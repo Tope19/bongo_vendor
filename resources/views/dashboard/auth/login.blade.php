@@ -65,7 +65,7 @@
         <div class="flex-1 flex flex-col">
           <h1 class="text-3xl font-bold text-gray-800 mb-8">Nice to see you again</h1>
 
-          <form class="space-y-6" method="POST" action="{{ route("auth.admin.login.save") }}">@csrf
+          <form class="space-y-6" method="POST" action="{{ route("auth.vendor.login.save") }}">@csrf
             @include("dashboard.status.status")
             <div class="space-y-2">
               <label for="email" class="text-sm text-gray-600">Email</label>
@@ -127,6 +127,12 @@
             >
               Sign in
             </button>
+            <p class="text-center text-sm text-gray-500">
+                Don't have an account?
+                <a href="{{ route('auth.vendor.register') }}" class="text-[#1A5157] hover:underline">
+                    Register
+                </a>
+            </p>
           </form>
         </div>
       </div>

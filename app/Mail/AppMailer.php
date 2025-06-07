@@ -19,7 +19,7 @@ class AppMailer extends Mailable
     public $from_name;
     public $template;
     public $template_type;
-    public $data;
+    private $data;
 
     /**
      * Create a new message instance.
@@ -40,7 +40,7 @@ class AppMailer extends Mailable
 
         $this->cc_emails = array_unique(array_merge($this->params['cc_emails'] ?? [], []), SORT_REGULAR);
 
-        $this->bcc_emails = array_unique(array_merge($this->params['bcc_emails'] ?? []), SORT_REGULAR);
+        $this->bcc_emails = array_unique(array_merge($this->params['bcc_emails'] ?? [], []), SORT_REGULAR);
 
         $this->template = $this->params['template'] ?? 'emails.app.general';
 
@@ -54,7 +54,7 @@ class AppMailer extends Mailable
      */
     public function build()
     {
-        $config = $this->from($this->from_email , $this->from_name)
+        $config = $this->from(env("MAIL_FROM_ADDRESS"), env("MAIL_FROM_NAME"))
             ->cc($this->cc_emails)
             ->bcc($this->bcc_emails)
             ->with('data', $this->data)

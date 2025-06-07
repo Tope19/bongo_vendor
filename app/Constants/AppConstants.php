@@ -27,7 +27,7 @@ class AppConstants
         TransactionConstants::CREDIT => "success",
     ];
 
-    const CLIENT_ROLE = 'Client';
+    const VENDOR_ROLE = 'Vendor';
     const ARTISAN_ROLE = 'Artisan';
     const ADMIN_ROLE = 'Admin';
     const DEFAULT_PASSWORD = 'password';
