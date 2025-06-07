@@ -45,30 +45,20 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
-
-    public function names()
-    {
-        return implode(' ', array_filter([$this->first_name, $this->middle_name, $this->last_name]));
-    }
-
     public function getFullNameAttribute()
     {
         return $this->names();
     }
 
-    public function locations()
-    {
-        return $this->hasMany(PickupLocation::class);
-    }
 
     public function orders()
     {
         return $this->hasMany(Order::class);
     }
 
-    public function logisticOrders()
+    public function products()
     {
-        return $this->hasMany(LogisticOrder::class);
+        return $this->hasMany(Product::class);
     }
 
 }

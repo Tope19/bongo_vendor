@@ -37,7 +37,7 @@ it('logs in user with valid credentials', function () {
         ->shouldReceive('user')
         ->andReturn($user);
 
-    $response = $this->post(route('auth.login.save'), [
+    $response = $this->post(route('auth.vendor.login.save'), [
         'email' => $user->email,
         'password' => 'password', // Assuming the password for the user
         'remember_me' => 'on',
@@ -75,7 +75,7 @@ it('redirects to artisan awaiting-approval route if artisan profile is pending a
         ->shouldReceive('user')
         ->andReturn($user);
 
-    $response = $this->post(route('auth.login.save'), [
+    $response = $this->post(route('auth.vendor.login.save'), [
         'email' => $user->email,
         'password' => 'password', // Assuming the password for the user
         'remember_me' => 'on',
@@ -106,7 +106,7 @@ it('redirects to artisan personal-info route if artisan profile is pending or fi
         ->shouldReceive('user')
         ->andReturn($user);
 
-    $response = $this->post(route('auth.login.save'), [
+    $response = $this->post(route('auth.vendor.login.save'), [
         'email' => $user->email,
         'password' => 'password', // Assuming the password for the user
         'remember_me' => 'on',
@@ -120,11 +120,11 @@ it('logs out user if invalid credentials provided', function () {
         ->shouldReceive('attempt')
         ->andReturn(false);
 
-    $response = $this->post(route('auth.login.save'), [
+    $response = $this->post(route('auth.vendor.login.save'), [
         'email' => 'invalid@example.com',
         'password' => 'invalidpassword',
     ]);
 
-    $response->assertRedirect(route('auth.login'));
+    $response->assertRedirect(route('auth.vendor.login'));
     $response->assertSessionHas('error', 'Invalid credentials.');
 });

@@ -1,18 +1,10 @@
 <!-- partial:partials/_navbar.html -->
 
-<nav class="navbar">
+<nav class="navbar no-print">
     <a href="#" class="sidebar-toggler">
         <i data-feather="menu"></i>
     </a>
     <div class="navbar-content">
-        <form class="search-form">
-            <div class="input-group">
-                <div class="input-group-text">
-                    <i data-feather="search"></i>
-                </div>
-                <input type="text" class="form-control" id="navbarForm" placeholder="Search here...">
-            </div>
-        </form>
         <ul class="navbar-nav">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button"
