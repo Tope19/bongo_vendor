@@ -1,23 +1,10 @@
 <?php
 
-use Livewire\Livewire;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Web\WebController;
-use App\Http\Controllers\Admin\AuthController;
-use App\Http\Controllers\Admin\BlogController;
-use App\Http\Controllers\Web\ReviewController;
-use App\Http\Controllers\Admin\ArtisanController;
-use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\BlogCategoryController;
-use App\Http\Controllers\Auth\ResetPasswordController;
-use App\Http\Controllers\Auth\AuthenticationController;
-use App\Http\Controllers\Auth\ForgotPasswordController;
-use App\Http\Controllers\Admin\ServiceCategoryController;
-use App\Http\Controllers\Admin\Ecommerce\ProductController;
-use App\Http\Controllers\Artisan\ArtisanDashboardController;
-use App\Http\Controllers\Admin\Ecommerce\ProductSizeController;
-use App\Http\Controllers\Admin\Ecommerce\ProductImageController;
-use App\Http\Controllers\Admin\Ecommerce\ProductCategoryController;
+use App\Http\Controllers\Vendor\AuthController;
+use App\Http\Controllers\Vendor\DashboardController;
+use App\Http\Controllers\Vendor\Ecommerce\ProductController;
+use App\Http\Controllers\Vendor\Ecommerce\ProductSizeController;
+use App\Http\Controllers\Vendor\Ecommerce\ProductImageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,17 +18,21 @@ use App\Http\Controllers\Admin\Ecommerce\ProductCategoryController;
 */
 
 Route::get('/', function () {
-    return redirect()->route('auth.admin.login');
+    return redirect()->route('auth.vendor.login');
 });
-Route::get('/login', [AuthController::class, 'loginView'])->name('auth.admin.login');
-Route::post('/login/save', [AuthController::class, 'login'])->name('auth.admin.login.save');
+Route::get('/login', [AuthController::class, 'loginView'])->name('auth.vendor.login');
+Route::get('/register', [AuthController::class, 'registerView'])->name('auth.vendor.register');
+// otp screen
+Route::get('/otp/verify', [AuthController::class, 'otpView'])->name('auth.vendor.otp');
+Route::post('/otp/verify/resend', [AuthController::class, 'resendOtp'])->name('auth.vendor.otp.resend');
+Route::post('/otp/verify/save', [AuthController::class, 'verifyOtp'])->name('auth.vendor.otp.save');
+Route::post('/login/save', [AuthController::class, 'login'])->name('auth.vendor.login.save');
+Route::post('/register/save', [AuthController::class, 'register'])->name('auth.vendor.register.save');
 Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout');
-Route::group(['prefix' => 'dashboard', 'middleware' => 'admin'], function () {
-    Route::get('/index', [DashboardController::class, 'index'])->name('admin.dashboard');
-
+Route::group(['prefix' => 'vendor', 'middleware' => 'vendor'], function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('vendor.dashboard');
     // Product Routes
      Route::resource('products', ProductController::class);
-     Route::resource('categories', ProductCategoryController::class);
      Route::resource('sizes', ProductSizeController::class);
      Route::resource('product-images', ProductImageController::class);
 
