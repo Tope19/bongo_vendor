@@ -79,7 +79,7 @@ class ProductController extends Controller
             $data['user_id'] = auth()->user()->id;
             $data['sku'] = 'SKU-' . strtoupper(uniqid());
             $data['barcode'] = 'BAR-' . strtoupper(uniqid());
-            $data['status'] = 1;
+            $data['status'] = 0;
             Product::create($data);
             DB::commit();
             toastr()->success('Product created successfully.');

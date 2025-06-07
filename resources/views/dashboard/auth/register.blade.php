@@ -62,7 +62,7 @@
                 <!-- Login form -->
                 <div class="flex-1 flex flex-col">
                     <h1 class="text-3xl font-bold text-gray-800 mb-8">
-                        Register as a Vendor
+                        Register as an Investor
                     </h1>
                     {{-- @include("dashboard.status.status") --}}
                     <form class="space-y-6" method="POST" action="{{ route('auth.vendor.register.save') }}">
