@@ -1,4 +1,4 @@
-<div class="modal fade" id="sizeModal" tabindex="-1" aria-labelledby="sizeModalLabel" aria-hidden="true">
+<div class="modal fade" id="sizeModal" tabindex="-1" aria-labelledby="sizeModalLabel">
         <div class="modal-dialog">
             <form enctype="multipart/form-data" action="{{ route('sizes.store') }}" method="POST" class="modal-content">
                 @csrf

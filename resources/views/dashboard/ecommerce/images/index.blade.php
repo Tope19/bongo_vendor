@@ -54,8 +54,8 @@
                                 </td>
                                 <td>{{ $image->created_at->format('d M Y') }}</td>
                                 <td>
-                                    <a href="#" class="btn btn-sm btn-info">Edit</a>
-                                    <a href="#" class="btn btn-sm btn-danger">Delete</a>
+                                    <button class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#editModal{{ $image->id }}">Edit</button>
+                                    <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $image->id }}">Delete</button>
                                 </td>
                             </tr>
                         @empty
@@ -73,4 +73,8 @@
 
 <!-- Product Image Modal -->
 @include('dashboard.ecommerce.images.partials.image-modal')
+@foreach ($productImages as $image)
+        @include('dashboard.ecommerce.images.partials.edit-modal')
+        @include('dashboard.ecommerce.images.partials.delete-modal')
+    @endforeach
 @endsection

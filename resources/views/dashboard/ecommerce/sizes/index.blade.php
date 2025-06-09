@@ -1,7 +1,8 @@
 @extends('dashboard.layouts.app', ['title' => 'Product Sizes List'])
 @section('content')
-<link rel="stylesheet" href="https://cdn.datatables.net/2.3.1/css/dataTables.dataTables.css" />
-<script src="https://cdn.datatables.net/2.3.1/js/dataTables.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.1/css/dataTables.dataTables.css" />
+    <script src="https://cdn.datatables.net/2.3.1/js/dataTables.js"></script>
 
     <nav class="page-breadcrumb">
         <ol class="breadcrumb">
@@ -51,11 +52,21 @@
                                     </td>
                                     <td>{{ $size->created_at->format('d M Y') }}</td>
                                     <td>
-                                        <a href="#" class="btn btn-sm btn-info">Edit</a>
-                                        <a href="#" class="btn btn-sm btn-danger">Delete</a>
+                                        <!-- Edit Button -->
+                                        <button type="button" class="btn btn-sm btn-info" data-bs-toggle="modal"
+                                            data-bs-target="#editSizeModal{{ $size->id }}">
+                                            Edit
+                                        </button>
+
+                                        <!-- Delete Button -->
+                                        <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
+                                            data-bs-target="#deleteSizeModal{{ $size->id }}">
+                                            Delete
+                                        </button>
                                     </td>
                                 </tr>
-                                @empty
+
+                            @empty
                                 <tr>
                                     <td colspan="8" class="text-center">No sizes found.</td>
                                 </tr>
@@ -70,5 +81,13 @@
     </div>
     <!-- Size Modal -->
     @include('dashboard.ecommerce.sizes.partials.size-modal')
-
+    @foreach ($sizes as $size)
+        @include('dashboard.ecommerce.sizes.partials.edit-modal')
+        @include('dashboard.ecommerce.sizes.partials.delete-modal')
+    @endforeach
+    {{-- <script>
+        $(document).ready(function() {
+            $('#dataTableExample').DataTable();
+        });
+    </script> --}}
 @endsection
