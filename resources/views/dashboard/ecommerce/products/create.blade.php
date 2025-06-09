@@ -60,7 +60,7 @@
                 <div class="card-body">
                     <h4 class="card-title">Assign Size to Product</h4>
 
-                    <form action="#" method="POST">
+                    <form action="{{ route("sizes.store") }}" method="POST">
                         @csrf
                         <div class="mb-3">
                             <label class="form-label">Select Product</label>
@@ -100,7 +100,7 @@
                 <div class="card-body">
                     <h4 class="card-title">Upload Product Image</h4>
 
-                    <form action="#" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route("product-images.store") }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
                             <label class="form-label">Select Product</label>

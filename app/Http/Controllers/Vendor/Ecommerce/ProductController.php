@@ -34,7 +34,7 @@ class ProductController extends Controller
             ->get();
         // Get the user's products
         $products = Product::where('user_id', $userId)
-            ->where('status', 1)
+            // ->where('status', 1)
             ->get();
 
         // Extract product IDs to filter sizes and images
@@ -79,13 +79,14 @@ class ProductController extends Controller
             $data['user_id'] = auth()->user()->id;
             $data['sku'] = 'SKU-' . strtoupper(uniqid());
             $data['barcode'] = 'BAR-' . strtoupper(uniqid());
-            $data['status'] = 0;
+            $data['status'] = 1;
             Product::create($data);
             DB::commit();
             toastr()->success('Product created successfully.');
             return back();
         } catch (\Exception $e) {
             DB::rollBack();
+            report_error($e);
             toastr()->error('Failed to create product.');
             return back();
         }
