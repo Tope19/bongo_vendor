@@ -23,8 +23,7 @@ class ProductSizeController extends Controller
             })
             ->latest()
             ->get();
-        $products = Product::where('status', 1)
-            ->where('user_id', $userId)
+        $products = Product::where('user_id', $userId)
             ->get();
         return view('dashboard.ecommerce.sizes.index', compact('sizes', 'products'));
     }
@@ -89,7 +88,7 @@ class ProductSizeController extends Controller
             }
 
             $data = $validator->validated();
-            $data['status'] = 0;
+            // $data['status'] = 0;
             $productSize->update($data);
             DB::commit();
             toastr()->success('Product Size updated successfully.');

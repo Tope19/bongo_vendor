@@ -41,12 +41,10 @@ class ProductController extends Controller
         $productIds = $products->pluck('id');
 
         // Filter sizes and images based on product IDs
-        $sizes = ProductSize::where('status', 1)
-            ->whereIn('product_id', $productIds)
+        $sizes = ProductSize::whereIn('product_id', $productIds)
             ->get();
 
-        $images = ProductImage::where('status', 1)
-            ->whereIn('product_id', $productIds)
+        $images = ProductImage::whereIn('product_id', $productIds)
             ->get();
         return view('dashboard.ecommerce.products.create', compact('categories', 'products', 'sizes', 'images'));
     }
@@ -79,7 +77,7 @@ class ProductController extends Controller
             $data['user_id'] = auth()->user()->id;
             $data['sku'] = 'SKU-' . strtoupper(uniqid());
             $data['barcode'] = 'BAR-' . strtoupper(uniqid());
-            $data['status'] = 1;
+            $data['status'] = 0;
             Product::create($data);
             DB::commit();
             toastr()->success('Product created successfully.');
