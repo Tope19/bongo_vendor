@@ -25,8 +25,7 @@ class ProductImageController extends Controller
             })
             ->latest()
             ->get();
-        $products = Product::where('status', 1)
-            ->where('user_id', $userId)
+        $products = Product::where('user_id', $userId)
             ->get();
         return view('dashboard.ecommerce.images.index', compact('productImages', 'products'));
     }
